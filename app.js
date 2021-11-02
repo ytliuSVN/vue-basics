@@ -9,16 +9,19 @@ const app = Vue.createApp({
           title: "Don't Make Me Think, Revisited",
           author: 'Steve Krug',
           img: 'assets/1.jpg',
+          isFav: true,
         },
         {
           title: 'A Project Guide to UX Design',
           author: 'Ross Unger',
           img: 'assets/2.jpg',
+          isFav: false,
         },
         {
           title: 'Just Enough Research',
           author: 'Erika Hall',
           img: 'assets/3.jpg',
+          isFav: true,
         },
       ],
     };
