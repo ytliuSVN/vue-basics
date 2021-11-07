@@ -1,8 +1,8 @@
 <template>
   <h1>{{ title }}</h1>
-  <Modal />
-  <input type="text" ref="name" />
-  <button @click="handleClick">click me</button>
+  <Modal :header="header" :text="text" theme="sale" />
+  <!-- <input type="text" ref="name" />
+  <button @click="handleClick">click me</button> -->
 </template>
 
 <script>
@@ -14,6 +14,8 @@ export default {
   data() {
     return {
       title: "My First Vue App :)",
+      header: "Sign up for the Giveaway!",
+      text: "Grab your ninja swag for half price!",
     };
   },
   methods: {
