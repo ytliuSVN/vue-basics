@@ -3,11 +3,11 @@
   <p>Welcome...</p>
   <div v-if="showModal">
     <Modal theme="sale" @close="toggleModal">
-      <template v-slot:links>
+      <template #links>
         <a href="#">sign up now</a>
         <a href="#">more info</a>
       </template>
-      <template v-slot:default>
+      <template #default>
         <h1>{{ header }}</h1>
         <p>{{ text }}</p>
       </template>
