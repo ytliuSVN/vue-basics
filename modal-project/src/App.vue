@@ -13,7 +13,18 @@
       </template>
     </Modal>
   </div>
+
+  <div v-if="showModalTwo">
+    <Modal @close="toggleModalTwo">
+      <template #default>
+        <h1>Sign up to the Newsletter</h1>
+        <p>For updates and promo codes!</p>
+      </template>
+    </Modal>
+  </div>
+
   <button @click.alt="toggleModal">open modal (alt)</button>
+  <button @click="toggleModalTwo">open modal</button>
   <!-- <input type="text" ref="name" />
   <button @click="handleClick">click me</button> -->
 </template>
@@ -30,6 +41,7 @@ export default {
       header: "Sign up for the Giveaway!",
       text: "Grab your ninja swag for half price!",
       showModal: false,
+      showModalTwo: false,
     };
   },
   methods: {
@@ -40,6 +52,9 @@ export default {
     },
     toggleModal() {
       this.showModal = !this.showModal;
+    },
+    toggleModalTwo() {
+      this.showModalTwo = !this.showModalTwo;
     },
   },
 };
