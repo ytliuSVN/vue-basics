@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import PostList from "../components/PostList.vue";
-import getPosts from "../composables/getPosts";
-import Spinner from "../components/Spinner.vue";
+import PostList from "@/components/PostList.vue";
+import getPosts from "@/composables/getPosts";
+import Spinner from "@/components/Spinner.vue";
 
 export default {
   name: "Home",
