@@ -1,8 +1,9 @@
 <template>
   <div class="tag">
     <div v-if="error">{{ error }}</div>
-    <div v-if="posts.length">
+    <div v-if="posts.length" class="layout">
       <PostList :posts="postsWithTag" />
+      <TagCloud :posts="posts" />
     </div>
     <div v-else>
       <Spinner />
@@ -19,6 +20,7 @@
 //   - use the PostList component to output the required posts
 //   - show the spinner until the data is loaded, and error if there is one
 
+import TagCloud from "../components/TagCloud.vue";
 import PostList from "@/components/PostList.vue";
 import getPosts from "@/composables/getPosts";
 import Spinner from "@/components/Spinner.vue";
@@ -27,7 +29,7 @@ import { computed } from "vue";
 
 export default {
   name: "Tag",
-  components: { PostList, Spinner },
+  components: { PostList, Spinner, TagCloud },
   setup() {
     const route = useRoute();
     const { posts, error, load } = getPosts();
@@ -44,4 +46,9 @@ export default {
 </script>
 
 <style>
+.tag {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
 </style>
