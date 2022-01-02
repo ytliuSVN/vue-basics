@@ -16,6 +16,7 @@
 <script>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { projectFirestore } from "../firebase/config";
 
 export default {
   name: "Create",
@@ -31,7 +32,7 @@ export default {
 
     const handleKeydown = () => {
       if (!tags.value.includes(tag.value)) {
-        tag.value = tag.value.trim();
+        tag.value = tag.value.trim(); // remove all whitespace
         tags.value.push(tag.value);
       }
       tag.value = "";
@@ -43,13 +44,17 @@ export default {
         body: body.value,
         tags: tags.value,
       };
-      let data = await fetch("http://localhost:3000/posts/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(post),
-      });
+
+      // await fetch("http://localhost:3000/posts/", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(post),
+      // });
+
+      const res = await projectFirestore.collection("posts").add(post);
+      // console.log(res); // can see the id and path of doc created
 
       router.push({ name: "Home" });
     };
