@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { projectFirestore } from '../firebase/config';
 
 const getPost = (id) => {
   const post = ref(null);
@@ -12,11 +13,22 @@ const getPost = (id) => {
       // })
 
       // read our JSON
-      let data = await fetch('http://localhost:3000/posts/' + id);
-      if (!data.ok) {
+      // let data = await fetch('http://localhost:3000/post/' + id);
+      // if (!data.ok) {
+      //   throw Error('that post does not exist');
+      // }
+      // post.value = await data.json();
+
+      // Retrieving single document with Firestore
+      const res = await projectFirestore.collection('posts').doc(id).get();
+      // console.log(res.data());
+
+      if (!res.exists) {
         throw Error('that post does not exist');
       }
-      post.value = await data.json();
+
+      post.value = { ...res.data(), id: res.id };
+      // console.log(post.value);
     } catch (err) {
       error.value = err.message;
       console.log(error.value);

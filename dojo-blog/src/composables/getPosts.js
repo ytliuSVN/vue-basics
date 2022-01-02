@@ -19,21 +19,25 @@ const getPosts = () => {
       // }
       // posts.value = await data.json();
 
-      // Retrieving data with Firestore
+      // Retrieving a collection with Firestore
       const res = await projectFirestore.collection('posts').get();
       // console.log(res.docs);
+
+      if (res.empty) {
+        throw Error('no available data');
+      }
 
       posts.value = res.docs.map((doc) => {
         // console.log(doc.data());
         return { ...doc.data(), id: doc.id };
       });
+
+      // console.log(posts.value);
     } catch (err) {
       error.value = err.message;
       console.log(error.value);
     }
   };
-
-  // console.log(posts);
 
   return { posts, error, load };
 };
