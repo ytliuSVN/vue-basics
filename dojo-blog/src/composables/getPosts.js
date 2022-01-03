@@ -20,7 +20,10 @@ const getPosts = () => {
       // posts.value = await data.json();
 
       // Retrieving a collection with Firestore
-      const res = await projectFirestore.collection('posts').get();
+      const res = await projectFirestore
+        .collection('posts')
+        .orderBy('createdAt', 'desc')
+        .get();
       // console.log(res.docs);
 
       if (res.empty) {
